@@ -116,11 +116,13 @@ with col2:
     most_common_review_score = review_score.value_counts().index[0]
     st.markdown(f"Most Common Review Score: **{most_common_review_score}**")
 
+colors_ = ["#72BCD4"] + ["#D3D3D3"] * (len(review_scores) - 1) 
+
 fig, ax = plt.subplots(figsize=(12, 6))
 sns.barplot(x=review_score.values,  # x-values
             y=review_score.index,  # y-values
             order=review_score.index,
-            palette=["#90CAF9" if score == most_common_review_score else "#D3D3D3" for score in review_score.index],
+            palette=colors_,
             orient='h'  # horizontal orientation
             )
 
