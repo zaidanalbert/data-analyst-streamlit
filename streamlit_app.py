@@ -153,7 +153,6 @@ plt.ylabel("Number of Customers")
 plt.xticks(fontsize=12)
 st.pyplot(fig)
 
-st.expander("See Explanation"):
-   st.write('Grafik dengan jelas menunjukkan bahwa produk yang paling diminati dalam penjualan adalah "bed_bath_table", sementara "auto" memiliki penjualan terendah. Perbedaan signifikan antara kedua kategori produk tersebut menggambarkan preferensi pelanggan yang kuat terhadap kategori "bed_bath_table" dalam pembelian mereka. Dan umlah pelanggan terbanyak berasal dari negara bagian São Paulo (SP). Dari sana, lebih dari separuh total pelanggan berpartisipasi dalam layanan yang diberikan.).')
+st.write('Grafik dengan jelas menunjukkan bahwa produk yang paling diminati dalam penjualan adalah "bed_bath_table", sementara "auto" memiliki penjualan terendah. Perbedaan signifikan antara kedua kategori produk tersebut menggambarkan preferensi pelanggan yang kuat terhadap kategori "bed_bath_table" dalam pembelian mereka. Dan umlah pelanggan terbanyak berasal dari negara bagian São Paulo (SP). Dari sana, lebih dari separuh total pelanggan berpartisipasi dalam layanan yang diberikan.).')
 
 st.caption('Copyright (C) M. Zaidan A. 2024')
