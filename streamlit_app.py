@@ -118,13 +118,13 @@ with col2:
 
 fig, ax = plt.subplots(figsize=(12, 6))
 
-# Create the palette with the specified colors for the first and other scores
-palette = ["#90CAF9" if score == most_common_review_score else "#D3D3D3" for score in review_score.index]
+# Set the color for each bar manually
+colors = ["#90CAF9" if i == 0 else "#D3D3D3" for i in range(len(review_score))]
 
 sns.barplot(x=review_score.values,  # x-values
             y=review_score.index,  # y-values
             order=review_score.index,
-            palette=palette,
+            palette=colors,  # Use the colors specified above
             orient='h'  # horizontal orientation
             )
 
@@ -133,7 +133,6 @@ plt.xlabel("Count")  # Change x-label
 plt.ylabel("Rating")  # Change y-label
 plt.xticks(fontsize=12)  # Change x-ticks
 st.pyplot(fig)
-
 
 # Customer Demographic
 
