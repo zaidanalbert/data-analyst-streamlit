@@ -52,8 +52,8 @@ all_df.reset_index(inplace=True)
 for column in datetime_columns:
     all_df[column] = pd.to_datetime(all_df[column])
 
-min_date = all_df["order_date"].min()
-max_date = all_df["order_date"].max()
+min_date = all_df["order_approved_at"].min()
+max_date = all_df["order_approved_at"].max()
  
 with st.sidebar:
     # Title
