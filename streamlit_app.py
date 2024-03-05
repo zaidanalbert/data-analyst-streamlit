@@ -3,45 +3,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import streamlit as st
 from babel.numbers import format_currency
+from funct import DataAnalyst
 sns.set(style='dark')
 
-def create_daily_orders_df(df):
-        daily_orders_df = df.resample(rule='D', on='order_date').agg({
-            "order_id": "nunique",
-            "total_price": "sum"
-        })
-        daily_orders_df = daily_orders_df.reset_index()
-        daily_orders_df.rename(columns={
-            "order_id": "order_count",
-            "total_price": "revenue"
-        }, inplace=True)
-        
-        return daily_orders_df
-    
-def create_sum_order_items_df(df):
-    sum_order_items_df = self.df.groupby("product_category_name_english")["product_id"].count().reset_index()
-    sum_order_items_df.rename(columns={
-        "product_id": "product_count"
-    }, inplace=True)
-    sum_order_items_df = sum_order_items_df.sort_values(by='product_count', ascending=False)
-    
-    return sum_order_items_df
-    
-def review_score_df(df):
-    review_scores = self.df['review_score'].value_counts().sort_values(ascending=False)
-    most_common_score = review_scores.idxmax()
-
-    return review_scores, most_common_score
-
-def create_bystate_df(df):
-        bystate_df = self.df.groupby(by="customer_state").customer_id.nunique().reset_index()
-        bystate_df.rename(columns={
-            "customer_id": "customer_count"
-        }, inplace=True)
-        most_common_state = bystate_df.loc[bystate_df['customer_count'].idxmax(), 'customer_state']
-        bystate_df = bystate_df.sort_values(by='customer_count', ascending=False)
-
-        return bystate_df, most_common_state
 
 all_df = pd.read_csv("all_data.csv")
 
@@ -68,10 +32,15 @@ with st.sidebar:
         value=[min_date, max_date]
     )
 
-daily_orders_df = create_daily_orders_df(all_df)
-sum_order_items_df = create_sum_order_items_df()
-review_score, common_score = review_score_df()
-state, most_common_state = create_bystate_df()
+main_df = all_df[(all_df["order_approved_at"] >= str(start_date)) & 
+                 (all_df["order_approved_at"] <= str(end_date))]
+
+function = DataAnalyst(main_df)
+
+daily_orders_df = function.create_daily_orders_df()
+sum_order_items_df = function.create_sum_order_items_df()
+review_score, common_score = function.review_score_df()
+state, most_common_state = function.create_bystate_df()
 
 st.header('Dicoding E-Commerce Dashboard :convenience_store:')
 
