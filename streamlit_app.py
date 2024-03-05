@@ -117,20 +117,19 @@ with col2:
     st.markdown(f"Most Common Review Score: **{most_common_review_score}**")
 
 fig, ax = plt.subplots(figsize=(12, 6))
-sns.barplot(x=review_score.index, 
-            y=review_score.values, 
+sns.barplot(x=review_score.values,  # x-values
+            y=review_score.index,  # y-values
             order=review_score.index,
-            palette=["#90CAF9" if score == most_common_score else "#D3D3D3" for score in review_score.index],
-            orient='h'
+            palette=["#90CAF9" if score == most_common_review_score else "#D3D3D3" for score in review_score.index],
+            orient='h'  # horizontal orientation
             )
 
 plt.title("Rating by customers for service", fontsize=15)
-plt.xlabel("Rating")
-plt.ylabel("Count")
-plt.xticks(fontsize=12)
-
-# Display the plot
+plt.xlabel("Count")  # Change x-label
+plt.ylabel("Rating")  # Change y-label
+plt.xticks(fontsize=12)  # Change x-ticks
 st.pyplot(fig)
+
 # Customer Demographic
 
 st.subheader("Customer Demographic")
