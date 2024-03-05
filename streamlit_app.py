@@ -63,7 +63,7 @@ ax.plot(
     daily_orders_df["order_count"],
     marker="o",
     linewidth=2,
-    color="#90CAF9"
+    color="#72BCD4"
 )
 ax.tick_params(axis="x", rotation=45)
 ax.tick_params(axis="y", labelsize=15)
@@ -83,12 +83,12 @@ with col2:
 
 fig, ax = plt.subplots(nrows=1, ncols=2, figsize=(45, 25))
 
-colors = ["#90CAF9", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
+colors = ["#72BCD4", "#D3D3D3", "#D3D3D3", "#D3D3D3", "#D3D3D3"]
 
 sns.barplot(x="product_count", y="product_category_name_english", data=sum_order_items_df.head(5), palette=colors, ax=ax[0])
 ax[0].set_ylabel(None)
 ax[0].set_xlabel("Number of Sales", fontsize=30)
-ax[0].set_title("Produk paling banyak terjual", loc="center", fontsize=50)
+ax[0].set_title("Produk yang terlaris", loc="center", fontsize=50)
 ax[0].tick_params(axis ='y', labelsize=35)
 ax[0].tick_params(axis ='x', labelsize=30)
 
@@ -98,7 +98,7 @@ ax[1].set_xlabel("Number of Sales", fontsize=30)
 ax[1].invert_xaxis()
 ax[1].yaxis.set_label_position("right")
 ax[1].yaxis.tick_right()
-ax[1].set_title("Produk paling sedikit terjual", loc="center", fontsize=50)
+ax[1].set_title("Produk yang tidak laris", loc="center", fontsize=50)
 ax[1].tick_params(axis='y', labelsize=35)
 ax[1].tick_params(axis='x', labelsize=30)
 
@@ -119,7 +119,7 @@ with col2:
 fig, ax = plt.subplots(figsize=(12, 6))
 
 # Set the color for each bar manually
-colors = ["#90CAF9" if i == 0 else "#D3D3D3" for i in range(len(review_score))]
+colors = ["#72BCD4" if i == 0 else "#D3D3D3" for i in range(len(review_score))]
 
 sns.barplot(x=review_score.values,  # x-values
             y=review_score.index,  # y-values
@@ -136,7 +136,7 @@ st.pyplot(fig)
 
 # Customer Demographic
 
-st.subheader("Customer Demographic")
+st.subheader("Most Customer State")
 most_common_state = state.customer_state.value_counts().index[0]
 st.markdown(f"Most Common State: **{most_common_state}**")
 
@@ -144,7 +144,7 @@ fig, ax = plt.subplots(figsize=(12, 6))
 sns.barplot(x=state.customer_state.value_counts().index,
             y=state.customer_count.values, 
             data=state,
-            palette=["#90CAF9" if score == most_common_state else "#D3D3D3" for score in state.customer_state.value_counts().index]
+            palette=["#72BCD4" if score == most_common_state else "#D3D3D3" for score in state.customer_state.value_counts().index]
                 )
 
 plt.title("Number customers from State", fontsize=15)
@@ -152,5 +152,8 @@ plt.xlabel("State")
 plt.ylabel("Number of Customers")
 plt.xticks(fontsize=12)
 st.pyplot(fig)
+
+st.expander("See Explanation"):
+   st.write('Grafik dengan jelas menunjukkan bahwa produk yang paling diminati dalam penjualan adalah "bed_bath_table", sementara "auto" memiliki penjualan terendah. Perbedaan signifikan antara kedua kategori produk tersebut menggambarkan preferensi pelanggan yang kuat terhadap kategori "bed_bath_table" dalam pembelian mereka. Dan umlah pelanggan terbanyak berasal dari negara bagian São Paulo (SP). Dari sana, lebih dari separuh total pelanggan berpartisipasi dalam layanan yang diberikan.).')
 
 st.caption('Copyright (C) M. Zaidan A. 2024')
