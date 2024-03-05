@@ -46,7 +46,7 @@ def create_bystate_df(self):
 all_df = pd.read_csv("all_data.csv")
 
 datetime_columns = ["order_approved_at", "order_delivered_carrier_date", "order_delivered_customer_date", "order_estimated_delivery_date", "order_purchase_timestamp", "shipping_limit_date"]
-all_df.sort_values(by="order_date", inplace=True)
+all_df.sort_values(by="order_approved_at", inplace=True)
 all_df.reset_index(inplace=True)
  
 for column in datetime_columns:
