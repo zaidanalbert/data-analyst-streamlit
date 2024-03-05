@@ -18,7 +18,7 @@ def create_daily_orders_df(df):
         
         return daily_orders_df
     
-def create_sum_order_items_df(self):
+def create_sum_order_items_df(df):
     sum_order_items_df = self.df.groupby("product_category_name_english")["product_id"].count().reset_index()
     sum_order_items_df.rename(columns={
         "product_id": "product_count"
@@ -27,13 +27,13 @@ def create_sum_order_items_df(self):
     
     return sum_order_items_df
     
-def review_score_df(self):
+def review_score_df(df):
     review_scores = self.df['review_score'].value_counts().sort_values(ascending=False)
     most_common_score = review_scores.idxmax()
 
     return review_scores, most_common_score
 
-def create_bystate_df(self):
+def create_bystate_df(df):
         bystate_df = self.df.groupby(by="customer_state").customer_id.nunique().reset_index()
         bystate_df.rename(columns={
             "customer_id": "customer_count"
