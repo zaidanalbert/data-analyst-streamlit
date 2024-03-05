@@ -120,7 +120,8 @@ fig, ax = plt.subplots(figsize=(12, 6))
 sns.barplot(x=review_score.index, 
             y=review_score.values, 
             order=review_score.index,
-            palette=["#90CAF9" if score == common_score else "#D3D3D3" for score in review_score.index]
+            palette=["#90CAF9" if score == common_score else "#D3D3D3" for score in review_score.index],
+            orient='h'
             )
 
 plt.title("Rating by customers for service", fontsize=15)
@@ -130,22 +131,24 @@ plt.xticks(fontsize=12)
 st.pyplot(fig)
 
 # Customer Demographic
-
 st.subheader("Customer Demographic")
-most_common_state = state.customer_state.value_counts().index[0]
-st.markdown(f"Most Common State: **{most_common_state}**")
+tab1 = st.tabs(["State"])
 
-fig, ax = plt.subplots(figsize=(12, 6))
-sns.barplot(x=state.customer_state.value_counts().index,
-            y=state.customer_count.values, 
-            data=state,
-            palette=["#90CAF9" if score == most_common_state else "#D3D3D3" for score in state.customer_state.value_counts().index]
-                )
+with tab1:
+    most_common_state = state.customer_state.value_counts().index[0]
+    st.markdown(f"Most Common State: **{most_common_state}**")
 
-plt.title("Number customers from State", fontsize=15)
-plt.xlabel("State")
-plt.ylabel("Number of Customers")
-plt.xticks(fontsize=12)
-st.pyplot(fig)
+    fig, ax = plt.subplots(figsize=(12, 6))
+    sns.barplot(x=state.customer_state.value_counts().index,
+                y=state.customer_count.values, 
+                data=state,
+                palette=["#90CAF9" if score == most_common_state else "#D3D3D3" for score in state.customer_state.value_counts().index]
+                    )
+
+    plt.title("Number customers from State", fontsize=15)
+    plt.xlabel("State")
+    plt.ylabel("Number of Customers")
+    plt.xticks(fontsize=12)
+    st.pyplot(fig)
 
 st.caption('Copyright (C) M. Zaidan A. 2024')
