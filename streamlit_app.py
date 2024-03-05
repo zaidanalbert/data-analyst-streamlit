@@ -68,10 +68,10 @@ with st.sidebar:
         value=[min_date, max_date]
     )
 
-daily_orders_df = create_daily_orders_df()
-sum_order_items_df = create_sum_order_items_df()
-review_score, common_score = review_score_df()
-state, most_common_state = create_bystate_df()
+daily_orders_df = create_daily_orders_df(all_df)
+sum_order_items_df = create_sum_order_items_df(all_df)
+review_score, common_score = review_score_df(all_df)
+state, most_common_state = create_bystate_df(all_df)
 
 st.header('Dicoding E-Commerce Dashboard :convenience_store:')
 
